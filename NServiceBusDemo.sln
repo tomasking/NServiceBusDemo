@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NServiceBusDemo.One", "NServiceBusDemo.One\NServiceBusDemo.One.csproj", "{D77260DA-9F69-461F-A995-6EBA890D804D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NServiceBusDemo.Messages", "NServiceBusDemo.Messages\NServiceBusDemo.Messages.csproj", "{96A45B03-AE31-41CA-9EAD-CBFDF31034E8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D77260DA-9F69-461F-A995-6EBA890D804D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D77260DA-9F69-461F-A995-6EBA890D804D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D77260DA-9F69-461F-A995-6EBA890D804D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D77260DA-9F69-461F-A995-6EBA890D804D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96A45B03-AE31-41CA-9EAD-CBFDF31034E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96A45B03-AE31-41CA-9EAD-CBFDF31034E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96A45B03-AE31-41CA-9EAD-CBFDF31034E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96A45B03-AE31-41CA-9EAD-CBFDF31034E8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
