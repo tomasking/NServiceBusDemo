@@ -1,9 +1,10 @@
 
-namespace NServiceBusDemo.One
+namespace NServiceBusDemo.Two
 {
-    using NHibernate.Cfg;
+    using System.Reflection;
 
     using NServiceBus;
+    using NServiceBus.Features;
     using NServiceBus.Persistence;
 
     /*
@@ -14,6 +15,8 @@ namespace NServiceBusDemo.One
     {
         public void Customize(BusConfiguration configuration)
         {
+            configuration.AssembliesToScan(typeof(PlaceOrderHandler).Assembly);
+
             configuration.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>();
             configuration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
             configuration.UseTransport<MsmqTransport>();
