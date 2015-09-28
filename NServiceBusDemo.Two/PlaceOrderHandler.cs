@@ -1,21 +1,33 @@
-﻿namespace NServiceBusDemo.Two
+﻿#region PlaceOrderHandler
+
+using System;
+using NServiceBus;
+using NServiceBusDemo.Messages;
+
+namespace NServiceBusDemo.Two
 {
-    using System;
-
-    using NServiceBus;
-
-    using NServiceBusDemo.Messages;
-
     public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
     {
-        public PlaceOrderHandler()
+        IBus bus;
+
+        public PlaceOrderHandler(IBus bus)
         {
-            int i = 4;
+            this.bus = bus;
         }
 
         public void Handle(PlaceOrder message)
         {
-            Console.WriteLine("Order for Product: {0} placed.", message.Product);
+            Console.WriteLine(@"PlaceOrder received, Product: {0}, Id: {1}", message.Product, message.Id);
+
+//            Console.WriteLine(@"Publishing: OrderPlaced for Order Id: {0}", message.Id);
+//
+//            OrderPlaced orderPlaced = new OrderPlaced
+//            {
+//                OrderId = message.Id
+//            };
+//            bus.Publish(orderPlaced);
         }
-    } 
+    }
 }
+
+#endregion

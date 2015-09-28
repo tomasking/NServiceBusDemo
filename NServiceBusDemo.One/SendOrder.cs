@@ -1,20 +1,41 @@
-﻿namespace NServiceBusDemo.One
+﻿using System;
+
+namespace NServiceBusDemo.One
 {
     using NServiceBus;
 
     using NServiceBusDemo.Messages;
 
-    public class SendOrder : IWantToRunWhenBusStartsAndStops
+    public class SendOrder
     {
-        public IBus Bus { get; set; }
-
-        public void Start()
+        static void SendOrderToBus(IBus bus)
         {
-            this.Bus.Send("NServiceBusDemo.PlaceOrder", new PlaceOrder() { Product = "New shoes" });
-        }
 
-        public void Stop()
-        {
+            Console.WriteLine("Press enter to send a message");
+            Console.WriteLine("Press any key to exit");
+
+            while (true)
+            {
+                ConsoleKeyInfo key = Console.ReadKey();
+                Console.WriteLine();
+
+                if (key.Key != ConsoleKey.Enter)
+                {
+                    return;
+                }
+                Guid id = Guid.NewGuid();
+
+                PlaceOrder placeOrder = new PlaceOrder
+                {
+                    Product = "New shoes",
+                    Id = id
+                };
+                bus.Send("Samples.StepByStep.Server", placeOrder);
+
+                Console.WriteLine("Sent a new PlaceOrder message with id: {0}", id.ToString("N"));
+
+            }
+
         }
     } 
 }

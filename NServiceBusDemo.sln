@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NServiceBusDemo.One", "NServiceBusDemo.One\NServiceBusDemo.One.csproj", "{D77260DA-9F69-461F-A995-6EBA890D804D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NServiceBusDemo.Messages", "NServiceBusDemo.Messages\NServiceBusDemo.Messages.csproj", "{96A45B03-AE31-41CA-9EAD-CBFDF31034E8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NServiceBusDemo.Two", "NServiceBusDemo.Two\NServiceBusDemo.Two.csproj", "{AE8E8D36-B0A7-4A9B-91DB-B5A29B04F49B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NServiceBusDemo.Main", "NServiceBusDemo.Main\NServiceBusDemo.Main.csproj", "{FF698E5B-AF78-4FB5-A60A-62EBC296111C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{AE8E8D36-B0A7-4A9B-91DB-B5A29B04F49B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE8E8D36-B0A7-4A9B-91DB-B5A29B04F49B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE8E8D36-B0A7-4A9B-91DB-B5A29B04F49B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF698E5B-AF78-4FB5-A60A-62EBC296111C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF698E5B-AF78-4FB5-A60A-62EBC296111C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF698E5B-AF78-4FB5-A60A-62EBC296111C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF698E5B-AF78-4FB5-A60A-62EBC296111C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

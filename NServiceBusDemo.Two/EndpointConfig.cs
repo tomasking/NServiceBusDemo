@@ -1,4 +1,6 @@
 
+using NServiceBusDemo.Messages;
+
 namespace NServiceBusDemo.Two
 {
     using System.Reflection;
@@ -15,11 +17,12 @@ namespace NServiceBusDemo.Two
     {
         public void Customize(BusConfiguration configuration)
         {
-            configuration.AssembliesToScan(typeof(PlaceOrderHandler).Assembly);
-
-            configuration.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>();
-            configuration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
-            configuration.UseTransport<MsmqTransport>();
+            configuration.AssembliesToScan(typeof(PlaceOrderHandler).Assembly, typeof(OrderPlaced).Assembly);
+            configuration.EndpointName("PlaceOrder.Queue");
+            configuration.UseSerialization<JsonSerializer>();
+            configuration.EnableInstallers();
+            configuration.UsePersistence<InMemoryPersistence>();
+            
         }
     }
 }
