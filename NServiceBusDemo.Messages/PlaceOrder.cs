@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace NServiceBusDemo.Messages
+﻿namespace NServiceBusDemo.Messages.Commands
 {
+    using System;
+
     using NServiceBus;
 
     public class PlaceOrder : ICommand

@@ -5,6 +5,7 @@ namespace NServiceBusDemo.One
     using NServiceBus;
 
     using NServiceBusDemo.Messages;
+    using NServiceBusDemo.Messages.Commands;
 
     public class SendOrder
     {

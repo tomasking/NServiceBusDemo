@@ -5,12 +5,14 @@ using NServiceBusDemo.Messages;
 
 namespace NServiceBusDemo.Main
 {
+    using NServiceBusDemo.Messages.Commands;
+
     class Program
     {
         static void Main()
         {
             BusConfiguration busConfiguration = new BusConfiguration();
-            //busConfiguration.EndpointName("PlaceOrder.Queue");
+            busConfiguration.EndpointName("OrderPlaced");
             busConfiguration.UseSerialization<JsonSerializer>();
             busConfiguration.EnableInstallers();
             busConfiguration.UsePersistence<InMemoryPersistence>();

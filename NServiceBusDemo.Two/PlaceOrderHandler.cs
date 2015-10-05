@@ -6,6 +6,8 @@ using NServiceBusDemo.Messages;
 
 namespace NServiceBusDemo.Two
 {
+    using NServiceBusDemo.Messages.Commands;
+
     public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
     {
         IBus bus;

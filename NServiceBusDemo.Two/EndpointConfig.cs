@@ -1,13 +1,9 @@
 
-using NServiceBusDemo.Messages;
-
 namespace NServiceBusDemo.Two
 {
-    using System.Reflection;
-
     using NServiceBus;
-    using NServiceBus.Features;
-    using NServiceBus.Persistence;
+
+    using NServiceBusDemo.Messages;
 
     /*
 		This class configures this endpoint as a Server. More information about how to configure the NServiceBus host
@@ -18,7 +14,8 @@ namespace NServiceBusDemo.Two
         public void Customize(BusConfiguration configuration)
         {
             configuration.AssembliesToScan(typeof(PlaceOrderHandler).Assembly, typeof(OrderPlaced).Assembly);
-            configuration.EndpointName("PlaceOrder.Queue");
+
+            //// configuration.EndpointName("OrderPlaced.Queue");
             configuration.UseSerialization<JsonSerializer>();
             configuration.EnableInstallers();
             configuration.UsePersistence<InMemoryPersistence>();
