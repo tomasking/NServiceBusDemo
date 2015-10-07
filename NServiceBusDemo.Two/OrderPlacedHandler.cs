@@ -9,12 +9,14 @@ namespace NServiceBusDemo.Two
 
     using NServiceBusDemo.Messages;
 
-    public class OrderPlacedHandler : IHandleMessages<IOrderPlaced>
+    public class OrderPlacedHandler : IHandleMessages<OrderPlaced>
     {
-        public IBus Bus { get; set; }
+        public OrderPlacedHandler()
+        {
+            Console.WriteLine("ctro");
+        }
 
-
-        public void Handle(IOrderPlaced message)
+        public void Handle(OrderPlaced message)
         {
             Console.WriteLine(@"Handling: OrderPlaceed for Order Id: {0}", message.OrderId);
         }

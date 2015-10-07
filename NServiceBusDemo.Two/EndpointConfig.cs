@@ -1,6 +1,8 @@
 
 namespace NServiceBusDemo.Two
 {
+    using System;
+
     using NServiceBus;
 
     using NServiceBusDemo.Messages;
@@ -14,12 +16,10 @@ namespace NServiceBusDemo.Two
         public void Customize(BusConfiguration configuration)
         {
             configuration.AssembliesToScan(typeof(PlaceOrderHandler).Assembly, typeof(OrderPlaced).Assembly);
-
-            //// configuration.EndpointName("OrderPlaced.Queue");
+            configuration.EndpointName("NServiceBus.Two");
             configuration.UseSerialization<JsonSerializer>();
             configuration.EnableInstallers();
             configuration.UsePersistence<InMemoryPersistence>();
-            
         }
     }
 }
