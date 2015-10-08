@@ -1,6 +1,4 @@
 ﻿
-
-#region OrderCreatedHandler
 namespace NServiceBusDemo.Two
 {
     using System;
@@ -11,15 +9,9 @@ namespace NServiceBusDemo.Two
 
     public class OrderPlacedHandler : IHandleMessages<OrderPlaced>
     {
-        public OrderPlacedHandler()
-        {
-            Console.WriteLine("ctro");
-        }
-
         public void Handle(OrderPlaced message)
         {
-            Console.WriteLine(@"Handling: OrderPlaceed for Order Id: {0}", message.OrderId);
+            Console.WriteLine(@"Handling: OrderPlaced ({0})", message.OrderId.ToString("N"));
         }
     }
 }
-#endregion

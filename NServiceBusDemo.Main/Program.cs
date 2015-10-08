@@ -1,10 +1,10 @@
-﻿using System;
-using System.Net.Mail;
-using NServiceBus;
-using NServiceBusDemo.Messages;
-
-namespace NServiceBusDemo.Main
+﻿namespace NServiceBusDemo.Main
 {
+    using System;
+
+    using NServiceBus;
+
+    using NServiceBusDemo.Messages;
     using NServiceBusDemo.Messages.Commands;
 
     class Program
@@ -12,11 +12,13 @@ namespace NServiceBusDemo.Main
         static void Main()
         {
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.EndpointName("OrderPlaced");
-            busConfiguration.UseSerialization<JsonSerializer>();
-            busConfiguration.EnableInstallers();
+            
+            busConfiguration.EndpointName("NServiceBusDemo.OrderPlaced"); // Optional - otherwise will take name of the project
             busConfiguration.UsePersistence<InMemoryPersistence>();
+            busConfiguration.UseSerialization<JsonSerializer>();
 
+            // busConfiguration.EnableInstallers();
+            
             using (IBus bus = Bus.Create(busConfiguration).Start())
             {
                 while (true)
@@ -33,7 +35,7 @@ namespace NServiceBusDemo.Main
                     }
                     else if (key.Key == ConsoleKey.B)
                     {
-                        SendEvent(bus);
+                        PublishEvent(bus);
                     }
                     else
                     {
@@ -47,15 +49,15 @@ namespace NServiceBusDemo.Main
             }
         }
 
-        private static void SendEvent(IBus bus)
+        private static void PublishEvent(IBus bus)
         {
             Guid id = Guid.NewGuid();
             OrderPlaced orderPlaced = new OrderPlaced
             {
                 OrderId = id
             };
-            bus.Publish(orderPlaced);
-            Console.WriteLine("Published a new OrderPlaced event with OrderId: {0}", id.ToString("N"));
+            bus.Publish(orderPlaced); // publishes to any subscribers that have registered with this endpoint as interested in this message
+            Console.WriteLine("Published OrderPlaced ({0})", id.ToString("N"));
         }
 
         private static void SendCommand(IBus bus)
@@ -66,9 +68,9 @@ namespace NServiceBusDemo.Main
                 Product = "New shoes",
                 Id = id
             };
-            bus.Send("PlaceOrder.Queue", placeOrder);
+            bus.Send(placeOrder); // queue to send to defined in App.config for different assemblies
 
-            Console.WriteLine("Sent a new PlaceOrder command with id: {0}", id.ToString("N"));
+            Console.WriteLine("Sent PlaceOrder ({0})", id.ToString("N"));
         }
     }
 }
