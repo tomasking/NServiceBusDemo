@@ -1,10 +1,10 @@
-﻿namespace NServiceBusDemo.Two
+﻿using NServiceBusDemo.Messages;
+
+namespace NServiceBusDemo.Two
 {
     using System;
 
     using NServiceBus;
-
-    using NServiceBusDemo.Messages.Commands;
 
     public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
     {

@@ -1,12 +1,12 @@
-﻿using System;
+using System;
 using NServiceBus;
 
 namespace NServiceBusDemo.Messages
 {
-    public class PlaceOrder : ICommand
+    public class StartOrder : ICommand
     {
         public Guid Id { get; set; }
 
-        public string Product { get; set; }
+        public string OrderId { get; set; }
     }
 }

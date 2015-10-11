@@ -1,11 +1,13 @@
-﻿namespace NServiceBusDemo.Main
+﻿using NHibernate.Cfg;
+using NServiceBus.Persistence;
+
+namespace NServiceBusDemo.Main
 {
     using System;
 
     using NServiceBus;
 
     using NServiceBusDemo.Messages;
-    using NServiceBusDemo.Messages.Commands;
 
     class Program
     {
@@ -14,10 +16,14 @@
             BusConfiguration busConfiguration = new BusConfiguration();
             
             busConfiguration.EndpointName("NServiceBusDemo.OrderPlaced"); // Optional - otherwise will take name of the project
-            busConfiguration.UsePersistence<InMemoryPersistence>();
+                                                                          
+            //busConfiguration.UsePersistence<InMemoryPersistence>();
+//            Configuration nhConfiguration = new Configuration();
+//            nhConfiguration.Properties["dialect"] = "NHibernate.Dialect.MsSql2012Dialect";
+//            nhConfiguration.Properties["connection.provider"] = "NHibernate.Connection.DriverConnectionProvider";
+//            nhConfiguration.Properties["connection.driver_class"] = "NHibernate.Driver.Sql2008ClientDriver";
+            busConfiguration.UsePersistence<NHibernatePersistence>(); //.UseConfiguration(nhConfiguration);
             busConfiguration.UseSerialization<JsonSerializer>();
-
-            // busConfiguration.EnableInstallers();
             
             using (IBus bus = Bus.Create(busConfiguration).Start())
             {

@@ -1,4 +1,10 @@
 
+using System;
+using NHibernate.Cfg;
+using NServiceBus.Features;
+using NServiceBus.Persistence;
+using NServiceBus.Persistence.NHibernate;
+
 namespace NServiceBusDemo.Two
 {
     using NServiceBus;
@@ -9,12 +15,15 @@ namespace NServiceBusDemo.Two
     {
         public void Customize(BusConfiguration configuration)
         {
+            configuration.DisableFeature<TimeoutManager>();
+            configuration.UsePersistence<NHibernatePersistence>();
             configuration.AssembliesToScan(typeof(PlaceOrderHandler).Assembly, typeof(OrderPlaced).Assembly);
             configuration.UseSerialization<JsonSerializer>();
-            configuration.UsePersistence<InMemoryPersistence>();
+            configuration.DisableFeature<NHibernateTimeoutStorage>();
 
-            //// configuration.EndpointName("NServiceBus.Two");
-            //// configuration.EnableInstallers();
+            //configuration.UsePersistence<InMemoryPersistence>();
+            // configuration.EndpointName("NServiceBus.Two");
+            // configuration.EnableInstallers();
         }
     }
 }
