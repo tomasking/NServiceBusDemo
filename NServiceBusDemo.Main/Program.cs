@@ -30,18 +30,37 @@ namespace NServiceBusDemo.Main
                 while (true)
                 {
                     Console.WriteLine("A) Send PlaceOrder Command");
-                    Console.WriteLine("B) Send OrderPlacedEvent");
+                    Console.WriteLine("B) Publish OrderPlacedEvent");
+                    Console.WriteLine("C) Send StartOrder");
+                    Console.WriteLine("D) Send CompleteOrder");
                     Console.WriteLine("Press Enter to exit");
                     ConsoleKeyInfo key = Console.ReadKey();
                     Console.WriteLine();
 
+                    Guid id = Guid.NewGuid();
                     if (key.Key == ConsoleKey.A)
                     {
-                        SendCommand(bus);
+                        PlaceOrder placeOrder = new PlaceOrder
+                        {
+                            Product = "New shoes",
+                            Id = id
+                        };
+                        SendCommand(bus, placeOrder);
                     }
                     else if (key.Key == ConsoleKey.B)
                     {
-                        PublishEvent(bus);
+                        var orderPlaced = new OrderPlaced { OrderId = id };
+                        PublishEvent(bus, orderPlaced);
+                    }
+                    else if (key.Key == ConsoleKey.C)
+                    {
+                        var startOrder= new StartOrder { Id = id, OrderId = "123"};
+                        SendCommand(bus, startOrder);
+                    }
+                    else if (key.Key == ConsoleKey.D)
+                    {
+                        var completeOrder = new CompleteOrder { Id = id, OrderId = "123" };
+                        SendCommand(bus, completeOrder);
                     }
                     else
                     {
@@ -55,28 +74,16 @@ namespace NServiceBusDemo.Main
             }
         }
 
-        private static void PublishEvent(IBus bus)
+        private static void PublishEvent<T>(IBus bus, T message)
         {
-            Guid id = Guid.NewGuid();
-            OrderPlaced orderPlaced = new OrderPlaced
-            {
-                OrderId = id
-            };
-            bus.Publish(orderPlaced); // publishes to any subscribers that have registered with this endpoint as interested in this message
-            Console.WriteLine("Published OrderPlaced ({0})", id.ToString("N"));
+            bus.Publish(message); // publishes to any subscribers that have registered with this endpoint as interested in this message
+            Console.WriteLine("Published {0}", typeof(T).Name);
         }
 
-        private static void SendCommand(IBus bus)
+        private static void SendCommand<T>(IBus bus, T message)
         {
-            Guid id = Guid.NewGuid();
-            PlaceOrder placeOrder = new PlaceOrder
-            {
-                Product = "New shoes",
-                Id = id
-            };
-            bus.Send(placeOrder); // queue to send to defined in App.config for different assemblies
-
-            Console.WriteLine("Sent PlaceOrder ({0})", id.ToString("N"));
+            bus.Send(message); // queue to send to defined in App.config for different assemblies
+            Console.WriteLine("Sent {0}", typeof(T));
         }
     }
 }

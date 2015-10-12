@@ -15,9 +15,9 @@ namespace NServiceBusDemo.Two
     {
         public void Customize(BusConfiguration configuration)
         {
-            configuration.DisableFeature<TimeoutManager>();
+            // configuration.DisableFeature<TimeoutManager>();
+            configuration.AssembliesToScan(typeof(NHibernatePersistence).Assembly, typeof(PlaceOrderHandler).Assembly, typeof(OrderPlaced).Assembly);
             configuration.UsePersistence<NHibernatePersistence>();
-            configuration.AssembliesToScan(typeof(PlaceOrderHandler).Assembly, typeof(OrderPlaced).Assembly);
             configuration.UseSerialization<JsonSerializer>();
             configuration.DisableFeature<NHibernateTimeoutStorage>();
 
