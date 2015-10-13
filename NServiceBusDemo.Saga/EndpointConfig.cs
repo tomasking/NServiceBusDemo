@@ -19,13 +19,8 @@ namespace NServiceBusDemo.Saga
             configuration.DisableFeature<TimeoutManager>();
             configuration.AssembliesToScan(typeof(NHibernatePersistence).Assembly, typeof(OrderSaga).Assembly, typeof(OrderPlaced).Assembly);
             //configuration.UsePersistence<InMemoryPersistence>();
-            Configuration nhConfiguration = new Configuration();
-            nhConfiguration.Properties["dialect"] = "NHibernate.Dialect.MsSql2008Dialect";
-            nhConfiguration.Properties["connection.provider"] = "NHibernate.Connection.DriverConnectionProvider";
-            nhConfiguration.Properties["connection.driver_class"] = "NHibernate.Driver.Sql2008ClientDriver";
-
-            configuration.UsePersistence<NHibernatePersistence>().UseConfiguration(nhConfiguration);
-            
+           
+            configuration.UsePersistence<NHibernatePersistence>();
             configuration.UseSerialization<JsonSerializer>();
             
             //configuration.DisableFeature<NHibernateTimeoutStorage>();

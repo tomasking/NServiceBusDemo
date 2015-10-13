@@ -1,13 +1,10 @@
-﻿using NHibernate.Cfg;
-using NServiceBus.Persistence;
-
-namespace NServiceBusDemo.Main
+﻿namespace NServiceBusDemo.Main
 {
     using System;
 
     using NServiceBus;
 
-    using NServiceBusDemo.Messages;
+    using Messages;
 
     class Program
     {
@@ -16,12 +13,6 @@ namespace NServiceBusDemo.Main
             BusConfiguration busConfiguration = new BusConfiguration();
             
             busConfiguration.EndpointName("NServiceBusDemo.OrderPlaced"); // Optional - otherwise will take name of the project
-                                                                          
-            //busConfiguration.UsePersistence<InMemoryPersistence>();
-//            Configuration nhConfiguration = new Configuration();
-//            nhConfiguration.Properties["dialect"] = "NHibernate.Dialect.MsSql2012Dialect";
-//            nhConfiguration.Properties["connection.provider"] = "NHibernate.Connection.DriverConnectionProvider";
-//            nhConfiguration.Properties["connection.driver_class"] = "NHibernate.Driver.Sql2008ClientDriver";
             busConfiguration.UsePersistence<NHibernatePersistence>(); //.UseConfiguration(nhConfiguration);
             busConfiguration.UseSerialization<JsonSerializer>();
             
@@ -69,8 +60,6 @@ namespace NServiceBusDemo.Main
                     Console.WriteLine();
                     Console.WriteLine();
                 }
-                Console.WriteLine("Press any key to exit");
-                Console.ReadKey();
             }
         }
 

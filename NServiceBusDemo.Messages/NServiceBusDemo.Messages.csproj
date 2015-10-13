@@ -43,7 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompleteOrder.cs" />
-    <Compile Include="IOrderPlaced.cs" />
     <Compile Include="OrderPlaced.cs" />
     <Compile Include="PlaceOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -4,7 +4,7 @@ namespace NServiceBusDemo.Messages
 
     using NServiceBus;
 
-    public class OrderPlaced : IOrderPlaced, IEvent
+    public class OrderPlaced : IEvent
     {
         public Guid OrderId { get; set; }
     }
